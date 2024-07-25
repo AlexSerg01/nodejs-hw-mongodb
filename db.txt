@@ -1,0 +1,5 @@
+"name": "Andriy Pavlenko",
+"phoneNumber": "+389999999999999999",
+"email": "dmytro3@example.com",
+"isFavourite": false,
+"contactType": "home"
