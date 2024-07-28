@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { ctrlWrapper } from "../utils/ctrlWrapper.js";
 import {
   createContactController,
   deleteContactController,
@@ -7,8 +6,8 @@ import {
   getContactById,
   updateContactController,
 } from "../controllers/contacts.js";
+import { ctrlWrapper } from "../utils/ctrlWrapper.js";
 import { validateBody } from "../middlewares/validateBody.js";
-
 import { isValidId } from "../middlewares/isValidId.js";
 import {
   createContactSchema,
