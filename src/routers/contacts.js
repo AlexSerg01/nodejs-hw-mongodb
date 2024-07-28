@@ -16,28 +16,24 @@ import {
 
 const contactsRouter = Router();
 
-contactsRouter.get("/contacts", ctrlWrapper(getAllContacts));
+contactsRouter.get("/", ctrlWrapper(getAllContacts));
 
-contactsRouter.get(
-  "/contacts/:contactId",
-  isValidId,
-  ctrlWrapper(getContactById)
-);
+contactsRouter.get("/:contactId", isValidId, ctrlWrapper(getContactById));
 
 contactsRouter.post(
-  "/contacts",
+  "/",
   validateBody(createContactSchema),
   ctrlWrapper(createContactController)
 );
 
 contactsRouter.patch(
-  "/contacts/:contactId",
+  "/:contactId",
   validateBody(updateContactSchema),
   ctrlWrapper(updateContactController)
 );
 
 contactsRouter.delete(
-  "/contacts/:contactId",
+  "/:contactId",
   isValidId,
   ctrlWrapper(deleteContactController)
 );
