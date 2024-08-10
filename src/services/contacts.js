@@ -1,4 +1,4 @@
-import { SORT_ORDER } from "../constants/sortOrder.js";
+import { SORT_ORDER } from "../constants/index.js";
 import { Contact } from "../db/models/Contact.js";
 import { calculatePaginationData } from "../utils/calculatePaginationData.js";
 
@@ -18,6 +18,8 @@ export const getAllContactsFromDB = async ({
     contactsQuery.where("isFavourite").equals(filter.isFavourite);
   }
 
+  contactsQuery.where("userId").equals(filter.userId);
+
   const contactsCount = await Contact.find()
     .merge(contactsQuery)
     .countDocuments();
@@ -36,16 +38,22 @@ export const getAllContactsFromDB = async ({
   };
 };
 
-export const getContactByIdFormDB = (id) => Contact.findById(id);
+export const getContactByIdFormDB = (id, userId) =>
+  Contact.findOne({ _id: id, userId });
 
 export const createContact = async (payload) => {
   const student = await Contact.create(payload);
   return student;
 };
 
-export const updateContact = async (contactId, payload, options = {}) => {
+export const updateContact = async (
+  contactId,
+  payload,
+  userId,
+  options = {}
+) => {
   const rawResult = await Contact.findOneAndUpdate(
-    { _id: contactId },
+    { _id: contactId, userId },
     payload,
     {
       new: true,
@@ -60,9 +68,10 @@ export const updateContact = async (contactId, payload, options = {}) => {
   };
 };
 
-export const deleteContact = async (contactId) => {
+export const deleteContact = async (contactId, userId) => {
   const contact = await Contact.findOneAndDelete({
     _id: contactId,
+    userId,
   });
 
   return contact;

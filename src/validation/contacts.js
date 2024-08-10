@@ -31,6 +31,7 @@ export const createContactSchema = Joi.object({
         "The contact type must be one of the following: personal, work, other.",
       "any.required": 'The "contact type" field is required.',
     }),
+  userId: Joi.string(), // нова властивість
 });
 
 export const updateContactSchema = Joi.object({
