@@ -28,6 +28,7 @@ const contactSchema = new Schema(
       ref: "users",
       required: true,
     }, // нова властивість
+    photo: { type: String },
   },
   {
     timestamps: true,
