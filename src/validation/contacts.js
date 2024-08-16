@@ -24,11 +24,11 @@ export const createContactSchema = Joi.object({
     "any.required": 'The "isFavourite" field is required.',
   }),
   contactType: Joi.string()
-    .valid("personal", "work", "other")
+    .valid("personal", "work", "home")
     .required()
     .messages({
       "any.only":
-        "The contact type must be one of the following: personal, work, other.",
+        "The contact type must be one of the following: personal, work, home.",
       "any.required": 'The "contact type" field is required.',
     }),
   userId: Joi.string(), // нова властивість
@@ -57,9 +57,9 @@ export const updateContactSchema = Joi.object({
     "boolean.base": 'The "isFavourite" field must be a boolean value.',
     "any.required": 'The "isFavourite" field is required.',
   }),
-  contactType: Joi.string().valid("personal", "work", "other").messages({
+  contactType: Joi.string().valid("personal", "work", "home").messages({
     "any.only":
-      "The contact type must be one of the following: personal, work, other.",
+      "The contact type must be one of the following: personal, work, home",
     "any.required": 'The "contact type" field is required.',
   }),
   photo: Joi.string(),
